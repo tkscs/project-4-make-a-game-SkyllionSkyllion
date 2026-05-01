@@ -4,33 +4,9 @@ import sys
 import random
 import time
 import abc
-import proposal.md
+from ido import *
 
 
-pygame.init()
-
-
-black = pygame.Color(0,0,0) #Black
-white = pygame.Color(255,255,255) #White
-gray = pygame.Color(128,128,128) #Gray
-red = pygame.Color(255,0,0) #Red
-
-
-SCREEN_WIDTH = 1400
-SCREEN_HEIGHT = 750
-SPEED = 5
-DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-DISPLAYSURF.fill(white)
-pygame.display.set_caption("Game")
-
-
-
-
-
-
-
-FPS = 60
-FramePerSec = pygame.time.Clock()
 
 # object1 = pygame.Rect((20,50), (50,100))
 # object2 = pygame.Rect((10,10),(100,100))
@@ -87,30 +63,6 @@ all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(E1)
 
-INC_SPEED = pygame.USEREVENT + 1
-pygame.time.set_timer(INC_SPEED, 1000)
 
 while True:
-    for event in pygame.event.get():
-        if event.type == INC_SPEED:
-             SPEED +=2
-        if event.type == QUIT:
-            pygame.quit()
-            sys.exit()
-    DISPLAYSURF.fill(white)
-    for entity in all_sprites:
-        DISPLAYSURF.blit(entity.image, entity.rect)
-        entity.move()
-    if pygame.sprite.spritecollideany(P1, enemies):
-        DISPLAYSURF.fill(red)
-        pygame.display.update()
-        for entity in all_sprites:
-            entity.kill()
-        time.sleep(2)
-        pygame.quit()
-        sys.exit
-
-
-
-    pygame.display.update()
-    FramePerSec.tick(FPS)
+     main_loop()
