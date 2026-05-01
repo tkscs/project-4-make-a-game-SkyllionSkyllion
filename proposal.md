@@ -16,7 +16,9 @@ Final Boss: Keo (character developed after cutscene)
 
 
 Keo Section
-
+Enemies
+Shooting
+Points
 
 
 Ido Section
