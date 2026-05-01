@@ -3,6 +3,9 @@ from pygame.locals import *
 import sys
 import random
 import time
+import abc
+import proposal.md
+
 
 pygame.init()
 
