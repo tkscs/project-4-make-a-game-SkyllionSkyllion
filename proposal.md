@@ -21,5 +21,13 @@ Keo Section
 
 Ido Section
 
+Sprites
+Can’t get out of the map
+Player movement
+Menu
+Top Down
+Menu screen
+
+
 
 
