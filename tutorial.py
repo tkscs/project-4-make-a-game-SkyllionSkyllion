@@ -68,4 +68,4 @@ all_sprites.add(E5)
 
 
 while True:
-     main_loop()
+    main_loop()
