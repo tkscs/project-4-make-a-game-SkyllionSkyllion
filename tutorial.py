@@ -8,7 +8,6 @@ from ido import *
 from utils import *
 from keo import *
 
-
 # object1 = pygame.Rect((20,50), (50,100))
 # object2 = pygame.Rect((10,10),(100,100))
 # print(object1.colliderect(object2))
