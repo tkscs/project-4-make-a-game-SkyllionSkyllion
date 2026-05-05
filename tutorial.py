@@ -4,10 +4,10 @@ import sys
 import random
 import time
 import abc
-from ido import *
 from utils import *
 from keo import *
 import utils
+
 pygame.init()
 pygame.display.init()
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
