@@ -4,7 +4,6 @@ import sys
 import random
 import time
 from utils import *
-from tutorial import *
 
 
 
@@ -12,7 +11,7 @@ class Enemy(pygame.sprite.Sprite):
       def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("Enemy.png")
-        self.image = pygame.transform.scale_by(self.image, 0.5)
+        self.image = pygame.transform.scale_by(self.image, 0.1)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40,SCREEN_WIDTH-40), 0)
       def move(self):

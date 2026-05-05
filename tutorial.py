@@ -7,6 +7,12 @@ import abc
 from ido import *
 from utils import *
 from keo import *
+import utils
+pygame.init()
+pygame.display.init()
+DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
+DISPLAYSURF.fill(white)
+pygame.display.set_caption("Game")
 
 # object1 = pygame.Rect((20,50), (50,100))
 # object2 = pygame.Rect((10,10),(100,100))
@@ -64,10 +70,7 @@ all_sprites.add(E2)
 all_sprites.add(E3)
 all_sprites.add(E4)
 all_sprites.add(E5)
-pygame.init()
-DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
-DISPLAYSURF.fill(white)
-pygame.display.set_caption("Game")
+
 
 INC_SPEED = pygame.USEREVENT + 1
 pygame.time.set_timer(INC_SPEED, 1000)
@@ -76,7 +79,7 @@ def main_loop():
     
     for event in pygame.event.get():
         if event.type == INC_SPEED:
-             SPEED +=2
+             utils.SPEED +=2
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
