@@ -4,6 +4,7 @@ import sys
 import random
 import time
 from utils import *
+from tutorial import *
 
 
 
