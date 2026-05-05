@@ -42,10 +42,16 @@ class Player(pygame.sprite.Sprite):
             if pressed_keys[K_RIGHT]:
                     self.rect.move_ip(5,0)
         if pressed_keys[K_SPACE]:
-             pass
+            pass
+            #SHOOT
 
     def draw(self,surface):
             surface.blit(self.image, self.rect)
+
+
+#POINT SYSTEM
+#NEW CLASS OF PROJECTILE
+#PROJECTILE COLLISION WITH ENEMIES
 
 
 
