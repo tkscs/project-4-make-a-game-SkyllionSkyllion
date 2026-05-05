@@ -5,6 +5,7 @@ import random
 import time
 import abc
 from utils import *
+from tutorial import *
 
 pygame.init()
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
