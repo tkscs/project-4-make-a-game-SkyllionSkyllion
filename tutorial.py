@@ -3,9 +3,7 @@ from pygame.locals import *
 import sys
 import random
 import time
-import abc
 from utils import *
-from keo import *
 import utils
 
 pygame.init()
@@ -18,7 +16,24 @@ pygame.display.set_caption("Game")
 # object2 = pygame.Rect((10,10),(100,100))
 # print(object1.colliderect(object2)))
 # print(object1.collidepoint(50,75))
+INC_SPEED = pygame.USEREVENT + 1
 
+class Enemy(pygame.sprite.Sprite):
+      def __init__(self):
+        super().__init__() 
+        self.image = pygame.image.load("Enemy.png")
+        self.image = pygame.transform.scale_by(self.image, 0.3)
+        self.rect = self.image.get_rect()
+        self.rect.center = (random.randint(40,SCREEN_WIDTH-40), 0)
+      def move(self):
+            self.rect.move_ip(0,utils.SPEED)
+            if (self.rect.top>SCREEN_HEIGHT):
+                self.rect.top = 0
+                self.rect.center = (random.randint(30,SCREEN_WIDTH-40),0)
+                pygame.event.post(pygame.event.Event(INC_SPEED))
+      def draw(self,surface):
+            surface.blit(self.image,self.rect)
+            
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -78,14 +93,14 @@ all_sprites.add(E4)
 all_sprites.add(E5)
 
 
-INC_SPEED = pygame.USEREVENT + 1
-pygame.time.set_timer(INC_SPEED, 1000)
+# pygame.time.set_timer(INC_SPEED, 1000)
 
 def main_loop():
     
     for event in pygame.event.get():
         if event.type == INC_SPEED:
-             utils.SPEED +=2
+            utils.SPEED +=.1
+            print(utils.SPEED)
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
@@ -100,7 +115,7 @@ def main_loop():
             entity.kill()
         time.sleep(2)
         pygame.quit()
-        sys.exit
+        sys.exit()
 
 
 
