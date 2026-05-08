@@ -17,7 +17,8 @@ pygame.display.set_caption("Game")
 # print(object1.colliderect(object2)))
 # print(object1.collidepoint(50,75))
 INC_SPEED = pygame.USEREVENT + 1
-
+player_height = 520 
+player_sideways = SCREEN_WIDTH/2
 class Enemy(pygame.sprite.Sprite):
       def __init__(self):
         super().__init__() 
@@ -40,7 +41,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.image.load("Player.png")
         self.image = pygame.transform.scale_by(self.image, 0.5)
         self.rect = self.image.get_rect()
-        self.rect.center = (160,520)
+        self.rect.center = (SCREEN_WIDTH/2,520)
  
     def move(self):
         pressed_keys = pygame.key.get_pressed()
@@ -63,6 +64,14 @@ class Player(pygame.sprite.Sprite):
     def draw(self,surface):
             surface.blit(self.image, self.rect)
 
+class Projectile(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.image.load("Projectile.png")
+        self.image = pygame.transform.scale_by(self.image, 0.5)
+        self.rect = self.image.get_rect()
+        self.rect.center = (160,520)
+    
 
 #POINT SYSTEM
 #NEW CLASS OF PROJECTILE
