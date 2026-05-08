@@ -41,7 +41,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(self.image, 0.5)
         self.rect = self.image.get_rect()
         self.rect.center = (160,520)
-
+ 
     def move(self):
         pressed_keys = pygame.key.get_pressed()
         if self.rect.top>0:
