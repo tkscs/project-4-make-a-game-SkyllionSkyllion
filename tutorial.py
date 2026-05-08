@@ -6,6 +6,10 @@ import time
 from utils import *
 import utils
 
+
+
+INC_GAMETIME = pygame.USEREVENT + 2
+game_timer = 0
 pygame.init()
 pygame.display.init()
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
@@ -26,12 +30,13 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(self.image, 0.3)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40,SCREEN_WIDTH-40), 0)
+
       def move(self):
             self.rect.move_ip(0,utils.SPEED)
             if (self.rect.top>SCREEN_HEIGHT):
-                self.rect.top = 0
-                self.rect.center = (random.randint(30,SCREEN_WIDTH-40),0)
                 pygame.event.post(pygame.event.Event(INC_SPEED))
+                time.sleep(5/game_timer)
+                self.rect.center = (random.randint(40, SCREEN_WIDTH-40),0)
       def draw(self,surface):
             surface.blit(self.image,self.rect)
             
@@ -103,12 +108,16 @@ all_sprites.add(E5)
 
 
 # pygame.time.set_timer(INC_SPEED, 1000)
-
+pygame.time.set_timer(INC_GAMETIME, 1000)
 def main_loop():
-    
+    global game_timer
     for event in pygame.event.get():
+        print (event)
+        if event.type == INC_GAMETIME:
+             game_timer += 1
         if event.type == INC_SPEED:
             utils.SPEED +=.1
+            
             print(utils.SPEED)
         if event.type == QUIT:
             pygame.quit()
