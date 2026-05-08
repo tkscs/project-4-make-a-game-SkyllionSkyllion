@@ -34,7 +34,8 @@ class Enemy(pygame.sprite.Sprite):
                 pygame.event.post(pygame.event.Event(INC_SPEED))
       def draw(self,surface):
             surface.blit(self.image,self.rect)
-            
+
+
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
@@ -48,6 +49,7 @@ class Player(pygame.sprite.Sprite):
         if self.rect.top>0:
             if pressed_keys[K_UP]:
                 self.rect.move_ip(0,-5)
+
         if self.rect.bottom<SCREEN_HEIGHT:
             if pressed_keys[K_DOWN]:
                 self.rect.move_ip(0,5)
