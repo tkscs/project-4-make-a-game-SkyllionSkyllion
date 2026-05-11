@@ -35,7 +35,7 @@ class Enemy(pygame.sprite.Sprite):
             self.rect.move_ip(0,utils.SPEED)
             if (self.rect.top>SCREEN_HEIGHT):
                 pygame.event.post(pygame.event.Event(INC_SPEED))
-                time.sleep(5/game_timer)
+                time.sleep(5/game_timer) #THIS IS BAD CHANGE THIS
                 self.rect.center = (random.randint(40, SCREEN_WIDTH-40),0)
       def draw(self,surface):
             surface.blit(self.image,self.rect)
