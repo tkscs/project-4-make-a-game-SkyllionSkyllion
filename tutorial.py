@@ -30,13 +30,22 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(self.image, 0.3)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40,SCREEN_WIDTH-40), 0)
+        self.active = True
+        self.respawn_timer = 0
 
       def move(self):
+            current_time = pygame.time.get_ticks()
+            if not self.active:
+                if current_time >= self.respawn_timer:
+                    self.active = True
+                    self.rect.center = (random.randint(40, SCREEN_WIDTH-40), 0)
+                return
             self.rect.move_ip(0,utils.SPEED)
             if (self.rect.top>SCREEN_HEIGHT):
                 pygame.event.post(pygame.event.Event(INC_SPEED))
-                time.sleep(5/game_timer) #THIS IS BAD CHANGE THIS
-                self.rect.center = (random.randint(40, SCREEN_WIDTH-40),0)
+                self.active = False
+                delay = (2000/game_timer*random.uniform(1,3))
+                self.respawn_timer = current_time + delay
       def draw(self,surface):
             surface.blit(self.image,self.rect)
 
@@ -48,6 +57,7 @@ class Player(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(self.image, 0.5)
         self.rect = self.image.get_rect()
         self.rect.center = (SCREEN_WIDTH/2,520)
+        self.active = True
  
     def move(self):
         pressed_keys = pygame.key.get_pressed()
@@ -126,8 +136,9 @@ def main_loop():
             sys.exit()
     DISPLAYSURF.fill(white)
     for entity in all_sprites:
-        DISPLAYSURF.blit(entity.image, entity.rect)
         entity.move()
+        if entity.active:
+            DISPLAYSURF.blit(entity.image, entity.rect)
     if pygame.sprite.spritecollideany(P1, enemies):
         DISPLAYSURF.fill(red)
         pygame.display.update()
