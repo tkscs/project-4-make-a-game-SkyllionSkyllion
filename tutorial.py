@@ -47,10 +47,7 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
-    global player_sideways
-    global player_height
-    player_height = 520 
-    player_sideways = SCREEN_WIDTH/2
+
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("Player.png")
@@ -58,30 +55,33 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (SCREEN_WIDTH/2,520)
         self.active = True
+        self.player_height = 520 
+        self.player_sideways = SCREEN_WIDTH/2
  
     def move(self):
         pressed_keys = pygame.key.get_pressed()
         if self.rect.top>0:
             if pressed_keys[K_UP]:
                 self.rect.move_ip(0,-5)
-                player_height += - 5
+                self.player_height += - 5
         if self.rect.bottom<SCREEN_HEIGHT:
             if pressed_keys[K_DOWN]:
                 self.rect.move_ip(0,5)
-                player_height += 5
+                self.player_height += 5
         if self.rect.left > 0:
             if pressed_keys[K_LEFT]:
                 self.rect.move_ip(-5,0)
-                player_sideways += -5
+                self.player_sideways += -5
         if self.rect.right <SCREEN_WIDTH:       
             if pressed_keys[K_RIGHT]:
                 self.rect.move_ip(5,0)
-                player_sideways += 5
+                self.player_sideways += 5
         if pressed_keys[K_SPACE]:
             # pygame.event.post(pygame.event.Event(SHOOT))
 
             pass
             #SHOOT
+
 
     def draw(self,surface):
             surface.blit(self.image, self.rect)
