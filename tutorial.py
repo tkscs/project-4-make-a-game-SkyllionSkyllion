@@ -16,10 +16,7 @@ DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 DISPLAYSURF.fill(white)
 pygame.display.set_caption("Game")
 
-# object1 = pygame.Rect((20,50), (50,100))
-# object2 = pygame.Rect((10,10),(100,100))
-# print(object1.colliderect(object2)))
-# print(object1.collidepoint(50,75))
+
 INC_SPEED = pygame.USEREVENT + 1
 player_height = 520 
 player_sideways = SCREEN_WIDTH/2
