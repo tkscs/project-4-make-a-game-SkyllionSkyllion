@@ -92,7 +92,14 @@ class Projectile(pygame.sprite.Sprite):
         self.image = pygame.image.load("Projectile.png")
         self.image = pygame.transform.scale_by(self.image, 0.5)
         self.rect = self.image.get_rect()
-        self.rect.center = (160,520)
+        self.rect.center = (P1.player_height, P1.player_sideways)
+    def shoot(self):
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[K_SPACE]:
+            self.rect.center = (P1.player_height, P1.player_sideways)
+    def move(self):
+        "
+
     
 
 #POINT SYSTEM
@@ -107,14 +114,19 @@ E2 = Enemy()
 E3 = Enemy()
 E4 = Enemy()
 E5 = Enemy()
+PJ1 = Projectile()
+
 
 enemies = pygame.sprite.Group()
+projectiles = pygame.sprite.Group()
 enemies.add(E1, E2, E3, E4, E5)
+projectiles.add(PJ1)
 
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
 all_sprites.add(E1, E2, E3, E4, E5)
+all_sprites.add(PJ1)
 
 
 
