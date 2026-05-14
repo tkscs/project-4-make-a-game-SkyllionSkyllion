@@ -64,7 +64,6 @@ class Player(pygame.sprite.Sprite):
         if self.rect.top>0:
             if pressed_keys[K_UP]:
                 self.rect.move_ip(0,-5)
-
         if self.rect.bottom<SCREEN_HEIGHT:
             if pressed_keys[K_DOWN]:
                 self.rect.move_ip(0,5)
@@ -75,6 +74,8 @@ class Player(pygame.sprite.Sprite):
             if pressed_keys[K_RIGHT]:
                     self.rect.move_ip(5,0)
         if pressed_keys[K_SPACE]:
+            # pygame.event.post(pygame.event.Event(SHOOT))
+
             pass
             #SHOOT
 
