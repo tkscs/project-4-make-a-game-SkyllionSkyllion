@@ -18,8 +18,7 @@ pygame.display.set_caption("Game")
 
 
 INC_SPEED = pygame.USEREVENT + 1
-player_height = 520 
-player_sideways = SCREEN_WIDTH/2
+
 class Enemy(pygame.sprite.Sprite):
       def __init__(self):
         super().__init__() 
@@ -48,6 +47,8 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
+    player_height = 520 
+    player_sideways = SCREEN_WIDTH/2
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("Player.png")
@@ -61,19 +62,19 @@ class Player(pygame.sprite.Sprite):
         if self.rect.top>0:
             if pressed_keys[K_UP]:
                 self.rect.move_ip(0,-5)
-                player_height = player_height - 5
+                player_height += - 5
         if self.rect.bottom<SCREEN_HEIGHT:
             if pressed_keys[K_DOWN]:
                 self.rect.move_ip(0,5)
-                player_height = player_height + 5
+                player_height += 5
         if self.rect.left > 0:
             if pressed_keys[K_LEFT]:
                 self.rect.move_ip(-5,0)
-                player_sideways =player_sideways -5
+                player_sideways += -5
         if self.rect.right <SCREEN_WIDTH:       
             if pressed_keys[K_RIGHT]:
                 self.rect.move_ip(5,0)
-                player_sideways =player_sideways+ 5
+                player_sideways += 5
         if pressed_keys[K_SPACE]:
             # pygame.event.post(pygame.event.Event(SHOOT))
 
