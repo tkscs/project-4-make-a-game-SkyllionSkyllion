@@ -21,6 +21,8 @@ INC_SPEED = pygame.USEREVENT + 1
 player_height = 520 
 player_sideways = SCREEN_WIDTH/2
 class Enemy(pygame.sprite.Sprite):
+      global player_height
+      global player_sideways
       def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("Enemy.png")
