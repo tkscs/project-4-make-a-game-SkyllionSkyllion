@@ -102,19 +102,13 @@ E4 = Enemy()
 E5 = Enemy()
 
 enemies = pygame.sprite.Group()
-enemies.add(E1)
-enemies.add(E2)
-enemies.add(E3)
-enemies.add(E4)
-enemies.add(E5)
+enemies.add(E1, E2, E3, E4, E5)
+
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
-all_sprites.add(E1)
-all_sprites.add(E2)
-all_sprites.add(E3)
-all_sprites.add(E4)
-all_sprites.add(E5)
+all_sprites.add(E1, E2, E3, E4, E5)
+
 
 
 # pygame.time.set_timer(INC_SPEED, 1000)
