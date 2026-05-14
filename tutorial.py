@@ -47,6 +47,8 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Player(pygame.sprite.Sprite):
+    global player_sideways
+    global player_height
     player_height = 520 
     player_sideways = SCREEN_WIDTH/2
     def __init__(self):
