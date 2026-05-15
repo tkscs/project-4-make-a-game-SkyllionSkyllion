@@ -20,29 +20,34 @@ pygame.display.set_caption("Game")
 INC_SPEED = pygame.USEREVENT + 1
 
 class Enemy(pygame.sprite.Sprite):
-      def __init__(self):
+    def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("Enemy.png")
-        self.image = pygame.transform.scale_by(self.image, 0.3)
+        self.image = pygame.transform.scale_by(self.image, 0.1)
         self.rect = self.image.get_rect()
         self.rect.center = (random.randint(40,SCREEN_WIDTH-40), 0)
         self.active = True
         self.respawn_timer = 0
 
-      def move(self):
-            current_time = pygame.time.get_ticks()
+    def move(self):
+            # current_time = pygame.time.get_ticks()
             if not self.active:
-                if current_time >= self.respawn_timer:
+                if pygame.time.get_ticks() >= self.respawn_timer:
                     self.active = True
                     self.rect.center = (random.randint(40, SCREEN_WIDTH-40), 0)
                 return
             self.rect.move_ip(0,utils.SPEED)
             if (self.rect.top>SCREEN_HEIGHT):
+                self.spawn()
                 pygame.event.post(pygame.event.Event(INC_SPEED))
+
+    
+    def spawn(self):
+                
                 self.active = False
-                delay = (2000/game_timer*random.uniform(1,3))
-                self.respawn_timer = current_time + delay
-      def draw(self,surface):
+                delay = (2000/(game_timer+1)*random.uniform(1,3))
+                self.respawn_timer = pygame.time.get_ticks() + delay
+    def draw(self,surface):
             surface.blit(self.image,self.rect)
 
 
@@ -76,11 +81,7 @@ class Player(pygame.sprite.Sprite):
             if pressed_keys[K_RIGHT]:
                 self.rect.move_ip(5,0)
                 self.player_sideways += 5
-        if pressed_keys[K_SPACE]:
-            # pygame.event.post(pygame.event.Event(SHOOT))
 
-            pass
-            #SHOOT
 
 
     def draw(self,surface):
@@ -94,13 +95,13 @@ class Projectile(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (P1.player_height, P1.player_sideways)
         self.active = False
-    def shoot(self):
+    def move(self):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_SPACE]:
-            self.rect.center = (P1.player_height, P1.player_sideways)
+            self.rect.center = (P1.player_sideways, P1.player_height)
             self.active = True
-    def move(self):
-        "
+        self.rect.move_ip(0, -5)
+        
 
     
 
@@ -116,18 +117,23 @@ E2 = Enemy()
 E3 = Enemy()
 E4 = Enemy()
 E5 = Enemy()
+E6 = Enemy()
+E7 = Enemy()
+E8 = Enemy()
+E9 = Enemy()
+E10 = Enemy()
 PJ1 = Projectile()
 
 
 enemies = pygame.sprite.Group()
 projectiles = pygame.sprite.Group()
-enemies.add(E1, E2, E3, E4, E5)
+enemies.add(E1, E2, E3, E4, E5, E6, E7, E8, E9, E10)
 projectiles.add(PJ1)
 
 
 all_sprites = pygame.sprite.Group()
 all_sprites.add(P1)
-all_sprites.add(E1, E2, E3, E4, E5)
+all_sprites.add(E1, E2, E3, E4, E5, E6, E7, E8, E9, E10)
 all_sprites.add(PJ1)
 
 
@@ -137,13 +143,13 @@ pygame.time.set_timer(INC_GAMETIME, 1000)
 def main_loop():
     global game_timer
     for event in pygame.event.get():
-        print (event)
+        # print (event)
         if event.type == INC_GAMETIME:
              game_timer += 1
         if event.type == INC_SPEED:
             utils.SPEED +=.1
             
-            print(utils.SPEED)
+            # print(utils.SPEED)
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
@@ -160,6 +166,13 @@ def main_loop():
         time.sleep(2)
         pygame.quit()
         sys.exit()
+    projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
+    if projectilehit != None:
+        print(f"{projectilehit =}")
+        projectilehit.spawn()
+        PJ1.rect.center = (-1000,-1000)
+        
+        
 
 
 
