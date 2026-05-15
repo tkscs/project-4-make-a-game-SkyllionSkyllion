@@ -15,6 +15,7 @@ pygame.display.init()
 DISPLAYSURF = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 DISPLAYSURF.fill(white)
 pygame.display.set_caption("Game")
+pointcounter = 0
 
 
 INC_SPEED = pygame.USEREVENT + 1
@@ -91,7 +92,7 @@ class Projectile(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("Projectile.png")
-        self.image = pygame.transform.scale_by(self.image, 0.5)
+        self.image = pygame.transform.scale_by(self.image, 0.3)
         self.rect = self.image.get_rect()
         self.rect.center = (P1.player_height, P1.player_sideways)
         self.active = False
@@ -100,12 +101,18 @@ class Projectile(pygame.sprite.Sprite):
         if pressed_keys[K_SPACE]:
             self.rect.center = (P1.player_sideways, P1.player_height)
             self.active = True
-        self.rect.move_ip(0, -5)
+        self.rect.move_ip(0, -10)
         
+        
+    
 
     
 
 #POINT SYSTEM
+
+
+
+
 #NEW CLASS OF PROJECTILE
 #PROJECTILE COLLISION WITH ENEMIES
 
@@ -141,6 +148,7 @@ all_sprites.add(PJ1)
 # pygame.time.set_timer(INC_SPEED, 1000)
 pygame.time.set_timer(INC_GAMETIME, 1000)
 def main_loop():
+    global pointcounter
     global game_timer
     for event in pygame.event.get():
         # print (event)
@@ -171,6 +179,9 @@ def main_loop():
         print(f"{projectilehit =}")
         projectilehit.spawn()
         PJ1.rect.center = (-1000,-1000)
+        pointcounter += 1
+        print(pointcounter)
+    
         
         
 
