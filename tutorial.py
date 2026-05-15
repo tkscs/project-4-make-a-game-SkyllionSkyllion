@@ -93,10 +93,12 @@ class Projectile(pygame.sprite.Sprite):
         self.image = pygame.transform.scale_by(self.image, 0.5)
         self.rect = self.image.get_rect()
         self.rect.center = (P1.player_height, P1.player_sideways)
+        self.active = False
     def shoot(self):
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[K_SPACE]:
             self.rect.center = (P1.player_height, P1.player_sideways)
+            self.active = True
     def move(self):
         "
 
