@@ -92,7 +92,7 @@ class Projectile(pygame.sprite.Sprite):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load("Projectile.png")
-        self.image = pygame.transform.scale_by(self.image, 0.3)
+        self.image = pygame.transform.scale_by(self.image, .3)
         self.rect = self.image.get_rect()
         self.rect.center = (P1.player_height, P1.player_sideways)
         self.active = False
