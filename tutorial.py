@@ -103,12 +103,18 @@ class Projectile(pygame.sprite.Sprite):
             self.active = True
         self.rect.move_ip(0, -10)
         
-        
-    
+class Finalboss(pygame.sprite.Sprite):
+     def __init__(self):
+          super().__init__()
+          self.image = pygame.image.load("Finalboss.png")
+          self.image = pygame.transform.scale_by(self.image, 2)
+          self.rect = self.image.get_rect()
+          self.rect.center = (40,40)
 
     
 
 #POINT SYSTEM
+
 
 
 
@@ -130,11 +136,13 @@ E8 = Enemy()
 E9 = Enemy()
 E10 = Enemy()
 PJ1 = Projectile()
-
+FB1 = Finalboss()
 
 enemies = pygame.sprite.Group()
 projectiles = pygame.sprite.Group()
 enemies.add(E1, E2, E3, E4, E5, E6, E7, E8, E9, E10)
+finalboss = pygame.sprite.Group()
+finalboss.add(FB1)
 projectiles.add(PJ1)
 
 
@@ -175,13 +183,15 @@ def main_loop():
         pygame.quit()
         sys.exit()
     projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
-    if projectilehit != None:
+    if projectilehit !=  None:
         print(f"{projectilehit =}")
         projectilehit.spawn()
         PJ1.rect.center = (-1000,-1000)
         pointcounter += 1
         print(pointcounter)
-    
+
+
+
         
         
 
