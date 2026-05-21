@@ -104,13 +104,22 @@ class Projectile(pygame.sprite.Sprite):
         self.rect.move_ip(0, -10)
         
 class Finalboss(pygame.sprite.Sprite):
-     def __init__(self):
+    def __init__(self):
           super().__init__()
           self.image = pygame.image.load("Finalboss.png")
           self.image = pygame.transform.scale_by(self.image, 2)
           self.rect = self.image.get_rect()
-          self.rect.center = (40,40)
+          self.active = False
+    def spawn(self):
+        self.actve = True
+         
+         
+    def move(self):
+         if self.active == False:
+             if pygame.time.get_ticks() > 30000:
+                  spawn(self)
 
+         
     
 
 #POINT SYSTEM
