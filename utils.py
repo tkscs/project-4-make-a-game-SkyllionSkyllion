@@ -8,6 +8,7 @@ gray = pygame.Color(128,128,128) #Gray
 red = pygame.Color(255,0,0) #Red
 
 
+
 SCREEN_WIDTH = 1400
 SCREEN_HEIGHT = 750
 SPEED = 5

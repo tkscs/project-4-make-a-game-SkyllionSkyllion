@@ -119,7 +119,7 @@ class Finalboss(pygame.sprite.Sprite):
              if pygame.time.get_ticks() > 30000:
                   spawn(self)
 
-         
+            
     
 
 #POINT SYSTEM
