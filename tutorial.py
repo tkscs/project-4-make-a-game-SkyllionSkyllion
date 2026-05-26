@@ -21,6 +21,7 @@ pointcounter = 0
 INC_SPEED = pygame.USEREVENT + 1
 
 class Enemy(pygame.sprite.Sprite):
+    global game_timer
     def __init__(self):
         super().__init__() 
         self.image = pygame.image.load("Enemy.png")
@@ -41,6 +42,9 @@ class Enemy(pygame.sprite.Sprite):
             if (self.rect.top>SCREEN_HEIGHT):
                 self.spawn()
                 pygame.event.post(pygame.event.Event(INC_SPEED))
+            if game_timer>30:
+                 self.active = False
+                 self.kill()
 
     
     def spawn(self):
@@ -104,6 +108,7 @@ class Projectile(pygame.sprite.Sprite):
         self.rect.move_ip(0, -15)
         
 class Finalboss(pygame.sprite.Sprite):
+    global game_timer
     def __init__(self):
           super().__init__()
           self.image = pygame.image.load("Finalboss.png")
@@ -112,7 +117,7 @@ class Finalboss(pygame.sprite.Sprite):
           self.active = False
     def move(self):
         if self.active == False:
-            if pygame.time.get_ticks() > 30000:
+            if game_timer() > 30:
                 self.actve = True
                 self.rect.center = (SCREEN_WIDTH/2,0)
                 sidemove = random.randint(-10,10)
@@ -190,7 +195,7 @@ def main_loop():
             entity.kill()
         time.sleep(2)
         pygame.quit()
-        print(f"You survived for {game_timer} seconds. You shot {pointcounter} Keo's with fireballs {pygame.time.get_ticks}")
+        print(f"You survived for {game_timer} seconds. You shot {pointcounter} Keo's with fireballs")
         sys.exit()
     projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
     if projectilehit !=  None:
