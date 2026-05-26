@@ -122,7 +122,7 @@ class Finalboss(pygame.sprite.Sprite):
                 self.rect.center = (SCREEN_WIDTH/2,0)
                 sidemove = random.randint(-10,10)
         else:
-            self.rect.move_ip(random.randint(sidemove-10, sidemove+10),((utils.SPEED)/2))
+            self.rect.move_ip(random.randint(sidemove-10, sidemove+10),-((utils.SPEED)/2))
             
          
     
