@@ -190,7 +190,7 @@ def main_loop():
             entity.kill()
         time.sleep(2)
         pygame.quit()
-        print(f"You survived for {game_timer} seconds.")
+        print(f"You survived for {game_timer} seconds. You shot {pointcounter} Keo's with fireballs")
         sys.exit()
     projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
     if projectilehit !=  None:
@@ -198,7 +198,6 @@ def main_loop():
         projectilehit.spawn()
         PJ1.rect.center = (-1000,-1000)
         pointcounter += 1
-        print(pointcounter)
 
 
 
