@@ -190,6 +190,7 @@ def main_loop():
             entity.kill()
         time.sleep(2)
         pygame.quit()
+        print(f"You survived for {game_timer} seconds.")
         sys.exit()
     projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
     if projectilehit !=  None:
