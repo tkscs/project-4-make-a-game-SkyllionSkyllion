@@ -118,7 +118,7 @@ class Finalboss(pygame.sprite.Sprite):
     def move(self):
         if self.active == False:
             if game_timer > 3:
-                self.actve = True
+                self.active = True
                 self.rect.center = (SCREEN_WIDTH/2,0)
                 sidemove = random.randint(-10,10)
         else:
