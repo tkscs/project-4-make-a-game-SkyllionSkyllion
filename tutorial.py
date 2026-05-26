@@ -111,10 +111,14 @@ class Finalboss(pygame.sprite.Sprite):
           self.rect = self.image.get_rect()
           self.active = False
     def move(self):
-         if self.active == False:
-             if pygame.time.get_ticks() > 30000:
-                  spawn(self)
-
+        if self.active == False:
+            if pygame.time.get_ticks() > 30000:
+                self.actve = True
+                self.rect.center = (SCREEN_WIDTH/2,0)
+                sidemove = random.randint(-10,10)
+        else:
+            self.rect.move_ip(random.randint(sidemove-10, sidemove+10),((utils.SPEED)/2))
+            
          
     
 
