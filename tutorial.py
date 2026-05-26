@@ -101,7 +101,7 @@ class Projectile(pygame.sprite.Sprite):
         if pressed_keys[K_SPACE]:
             self.rect.center = (P1.player_sideways, P1.player_height)
             self.active = True
-        self.rect.move_ip(0, -10)
+        self.rect.move_ip(0, -15)
         
 class Finalboss(pygame.sprite.Sprite):
     def __init__(self):
@@ -172,7 +172,7 @@ def main_loop():
         if event.type == INC_GAMETIME:
              game_timer += 1
         if event.type == INC_SPEED:
-            utils.SPEED +=.1
+            utils.SPEED +=.02
             
             # print(utils.SPEED)
         if event.type == QUIT:
@@ -190,7 +190,7 @@ def main_loop():
             entity.kill()
         time.sleep(2)
         pygame.quit()
-        print(f"You survived for {game_timer} seconds. You shot {pointcounter} Keo's with fireballs")
+        print(f"You survived for {game_timer} seconds. You shot {pointcounter} Keo's with fireballs {pygame.time.get_ticks}")
         sys.exit()
     projectilehit = pygame.sprite.spritecollideany(PJ1, enemies)
     if projectilehit !=  None:
