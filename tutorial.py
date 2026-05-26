@@ -110,16 +110,12 @@ class Finalboss(pygame.sprite.Sprite):
           self.image = pygame.transform.scale_by(self.image, 2)
           self.rect = self.image.get_rect()
           self.active = False
-    def spawn(self):
-        self.actve = True
-         
-         
     def move(self):
          if self.active == False:
              if pygame.time.get_ticks() > 30000:
                   spawn(self)
 
-            
+         
     
 
 #POINT SYSTEM
