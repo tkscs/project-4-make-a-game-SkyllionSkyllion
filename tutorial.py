@@ -109,10 +109,11 @@ class Projectile(pygame.sprite.Sprite):
         
 class Finalboss(pygame.sprite.Sprite):
     global game_timer
+    global sidemove
     def __init__(self):
           super().__init__()
           self.image = pygame.image.load("Finalboss.png")
-          self.image = pygame.transform.scale_by(self.image, 2)
+          self.image = pygame.transform.scale_by(self.image, 1)
           self.rect = self.image.get_rect()
           self.active = False
     def move(self):
@@ -120,9 +121,9 @@ class Finalboss(pygame.sprite.Sprite):
             if game_timer > 3:
                 self.active = True
                 self.rect.center = (SCREEN_WIDTH/2,0)
-                sidemove = random.randint(-10,10)
+                self.sidemove = random.randint(-10,10)
         else:
-            self.rect.move_ip(random.randint(sidemove-10, sidemove+10),-((utils.SPEED)/2))
+            self.rect.move_ip(random.randint(self.sidemove-10, self.sidemove+10),((utils.SPEED)/2))
             
          
     
