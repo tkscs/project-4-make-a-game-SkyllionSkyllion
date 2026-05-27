@@ -116,14 +116,23 @@ class Finalboss(pygame.sprite.Sprite):
           self.image = pygame.transform.scale_by(self.image, 1)
           self.rect = self.image.get_rect()
           self.active = False
+          self.speed_x = 5
+
+
     def move(self):
         if self.active == False:
             if game_timer > 3:
                 self.active = True
-                self.rect.center = (SCREEN_WIDTH/2,0)
-                self.sidemove = random.randint(-10,10)
+                self.rect.center = (SCREEN_WIDTH/2,self.rect.height / 2 +10 )
+             
         else:
-            self.rect.move_ip(random.randint(self.sidemove-10, self.sidemove+10),((utils.SPEED)/2))
+            self.rect.x += self.speed_x
+            if self.rect.left <= 0:
+                 self.rect.left = 0
+                 self.speed_x *= 1
+            elif self.rect.right >= SCREEN_WIDTH:
+                 self.rect.right = SCREEN_WIDTH
+                 self.speed_x *= 1
             
          
     
