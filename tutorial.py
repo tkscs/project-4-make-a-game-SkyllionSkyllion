@@ -188,7 +188,7 @@ def main_loop():
         if event.type == INC_GAMETIME:
              game_timer += 1
         if event.type == INC_SPEED:
-            utils.SPEED +=.05
+            utils.SPEED +=.1
             
             # print(utils.SPEED)
         if event.type == QUIT:
