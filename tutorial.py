@@ -42,7 +42,7 @@ class Enemy(pygame.sprite.Sprite):
             if (self.rect.top>SCREEN_HEIGHT):
                 self.spawn()
                 pygame.event.post(pygame.event.Event(INC_SPEED))
-            if game_timer>3:
+            if game_timer>30:
                  self.active = False
                  self.kill()
 
@@ -121,7 +121,7 @@ class Finalboss(pygame.sprite.Sprite):
 
     def move(self):
         if self.active == False:
-            if game_timer > 3:
+            if game_timer > 30:
                 self.active = True
                 self.rect.center = (SCREEN_WIDTH/2,self.rect.height / 2 +10 )
              
